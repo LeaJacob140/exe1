@@ -36,7 +36,7 @@ class GeometriesTests
 		// ============ Equivalence Partitions Tests ==============
 		//A few (but not all of them) in interaction
         int numOfIntersections = geometries.findIntersections(new Ray(new Point(-4, -3, 2), new Vector(9,5,-1))).size();
-		assertEquals(1, numOfIntersections, "Wrong number of intersection points");
+		assertEquals(2, numOfIntersections, "Wrong number of intersection points");
 
 		// =============== Boundary Values Tests ==================
 		//Empty collection of objects
@@ -51,7 +51,7 @@ class GeometriesTests
 
 		//The all shapes with interaction
 		numOfIntersections = geometries.findIntersections(new Ray(new Point(-4, -3, 0),new Vector(6,3,0.5))).size();
-		assertEquals(3, numOfIntersections, "Wrong number of intersection points");
+		assertEquals(4, numOfIntersections, "Wrong number of intersection points");
 	}
 	catch(Exception e)
 	{

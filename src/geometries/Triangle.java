@@ -22,7 +22,7 @@ public class Triangle extends Polygon {
         super(p1, p2, p3);
     }
     
-	public 	List<Point> findIntsersections(Ray ray)
+	public 	List<Point> findIntersections(Ray ray)
 	{
 		List<Point> pPoint = plane.findIntersections(ray);
 		
@@ -50,7 +50,9 @@ public class Triangle extends Polygon {
     	
         if ((s1<0&& s2<0&& s3 <0)||(s1>0&& s2>0&& s3 >0)) 
         {
-   
+        	//for(Point pnt : plane.findIntersections(ray)) {
+        	//	pPoint.add(pnt);
+        	//}        	
     		return pPoint;    
     	}
         return null;
