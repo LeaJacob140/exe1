@@ -7,10 +7,10 @@ import primitives.Ray;
  * This This is an interface for find the interaction wuth the geometries and the primitives
  * @author Lea and Moriya
  */
-public interface Intersectable {
+public abstract class Intersectable {
 	/**
 	 * @param ray Ray of the interaction
 	 * @return list of points of the interaction
 	 */
-	List<Point> findIntersections(Ray ray);
+	public abstract List<Point> findIntersections(Ray ray);
 }

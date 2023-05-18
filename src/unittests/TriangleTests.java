@@ -1,18 +1,10 @@
-/**
- * 
- */
 package unittests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
-
 import geometries.Triangle;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
+
 
 
 /**
@@ -47,18 +39,17 @@ class TriangleTests {
 	    Ray ray ;
 	    // ============ Equivalence Partitions Tests ==============
 	    // TC01: The point of intersection is opposite the vertex of the triangle
-	   //try {
+	    try {
 	    	   ray = new Ray(new Point(1, 1, -2),new Vector(-2, 0.5, -1));
 	    	   assertEquals(((new Point(-1, 1.5, -3))), triangle.findIntersections(ray).get(0),"the ray goes through the triangle");
-	    //	}
-	  //  catch(IllegalArgumentException e)
-	//    {}
+	    	}
+	    catch(IllegalArgumentException e) {}
 
 	    // TC02: The point of intersection is opposite the side of the triangle
 	    ray = new Ray(new Point(0, -1, -1), new Vector(0, 1, 1));
 	    assertNull(triangle.findIntersections(ray), "TC02: Wrong intersection");
 
-	    // TC03: The point of intersection is !!!! inside the triangle
+	    // TC03: The point of intersection is inside the triangle
 	    ray = new Ray(new Point(0, 0.1, -1), new Vector(0, 0.9, 1));
 	    assertNull(triangle.findIntersections(ray),
 	            "TC03: Wrong intersection point");

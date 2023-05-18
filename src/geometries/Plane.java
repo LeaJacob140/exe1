@@ -1,24 +1,29 @@
 package geometries;
 
-import java.util.ArrayList;
 import java.util.List;
 import static primitives.Util.*;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 /**
  * This class represents a plane, which is a point in space and a vertical vector
  * @author Lea and Moriya
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 	/**field for a point in space*/
 	Point q0;
+	
 	/**field for a vertical vector*/
 	Vector normal;
+	/**
+	 * The constructor calculates the normal according to what was learned about the normal to the triangle - and the builder will keep one
+		The points as the reference point of the plane
+	 * @param q0 the point of the plane
+	 * @param normal to the plane
+	 */
 	public Plane(Point q0, Vector normal) {
 		this.q0 = q0;
 		this.normal = normal.normalize();
 	}
+	
 	/**
 	 * The constructor calculates the normal according to what was learned about the normal to the triangle - and the builder will keep one
 		The points as the reference point of the plane
@@ -49,11 +54,10 @@ public class Plane implements Geometry {
 	public Vector getNormal(Point norPoint) {
 		return normal;
 	}
-	public 	List<Point> findIntsersections(Ray ray)
-	{
-		return null;
-	}
-	@Override
+	/**
+	 * @param ray of the intersection
+	 * @return the intersection points between the plane and the ray
+	 */
 	public List<Point> findIntersections(Ray ray)
 	{
 		if(q0.equals(ray.getP0()))

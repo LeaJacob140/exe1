@@ -68,53 +68,55 @@ class PlaneTests {
 	     Plane plane = new Plane(new Point(0, 0, 1), new Vector(0, 0, 1));
 	     
 	     // ============ Equivalence Partitions Tests ==============
-	     // The ray crosses the plane
+	     // TC1:The ray crosses the plane
 	     Ray ray1 = new Ray(new Point(0, 0, -1), new Vector(0, 0, 1));
 	     assertEquals(List.of(new Point(0, 0, 1)), plane.findIntersections(ray1),
 	            "Wrong intersection point when the ray crosses the plane");
 	     
-	     // The ray does not cross the plane
+	     // TC2:The ray does not cross the plane
 	     Ray ray2 = new Ray(new Point(0, 0, -1), new Vector(0, 1, 0));
 	     assertNull(plane.findIntersections(ray2),
 	             "Wrong intersection point when the ray doesn't cross the plane");
 	     
 	     // =============== Boundary Values Tests ==================
 	     // Group 1 - the ray is parallel to the plane (2):
-	     //The ray is contained in a plane
+	     //TC3:The ray is contained in a plane
 	     Ray ray3 = new Ray(new Point(0, 0, 1), new Vector(0, 0, 1));
 	     try {
-	    	 plane.findIntersections(ray3);}
-	     catch (IllegalArgumentException exception){}
+	         plane.findIntersections(ray3);}
+	    	 catch (IllegalArgumentException exception){}
 	     
-	     // The ray is not contained in the plane
+	     //TC4:The ray is not contained in the plane
 	     Ray ray4 = new Ray(new Point(0, 0, -1), new Vector(0, 0, -1));
 	     assertNull(plane.findIntersections(ray4),
 	             "Wrong intersection point when the ray is parallel to the plane and doesn't intersect it");
 
 	     // Group 2- the beam is perpendicular to the plane (3), according to P0:
-	     // The ray before the plane
+	     // TC5:The ray before the plane
 	     Ray ray5 = new Ray(new Point(0, 0, -1), new Vector(0, 1, 1));
 	     assertEquals(List.of(new Point(0, 2, 1)), plane.findIntersections(ray5),
 	             "Wrong intersection point when the ray is perpendicular to the plane and starts before it");
 
-	     // The foundation is in the plane
+	     // TC6:The foundation is in the plane
 	     Ray ray6 = new Ray(new Point(0, 0, 1), new Vector(0, 1, 0));
 	     assertNull(plane.findIntersections(ray6),
 	             "Wrong intersection point when the ray is perpendicular to the plane and starts on it");
 
-	     // The ray after the plane
+	     //TC7: The ray after the plane
 	     Ray ray7 = new Ray(new Point(0, 0, 2), new Vector(0, 1, 0));
 	     assertNull(plane.findIntersections(ray7),
 	             "Wrong intersection point when the ray is perpendicular to the plane and starts after it");
 
-	     // The ray is not perpendicular/parallel, but is on the plane
+	     //TC8: The ray is not perpendicular/parallel, but is on the plane
 	     Ray ray8 = new Ray(new Point(0, 1, 0), new Vector(1, 0, 0));
 	     assertNull( plane.findIntersections(ray8),
 	             "Wrong intersection point when the ray is on the plane but not perpendicular to it");
 
-	     // The ray is not perpendicular/parallel, but leaves the point of defining the plane
+	     // TC9:The ray is not perpendicular/parallel, but leaves the point of defining the plane
 	     Ray ray9 = new Ray(new Point(0, 1, 0), new Vector(1, 1, 0));
 	     assertNull(plane.findIntersections(ray9),
 	             "Wrong intersection point when the ray is not perpendicular/parallel to the plane and leaves the point of defining the plane");
 	 }
+
+
 }

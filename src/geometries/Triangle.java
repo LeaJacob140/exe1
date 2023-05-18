@@ -1,11 +1,9 @@
 package geometries;
-import static primitives.Util.*;
 
+import static primitives.Util.*;
+import primitives.*;
 import java.util.List;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
 /**
  * This class represents a triangle-polygon with 3 vertices, the class inherits from the polygon class
  * @author Lea and Moriya
@@ -22,6 +20,10 @@ public class Triangle extends Polygon {
         super(p1, p2, p3);
     }
     
+    /**
+	 * @param ray of the intersection
+	 * @return the intersection points between the triangle and the ray
+	 */
 	public 	List<Point> findIntersections(Ray ray)
 	{
 		List<Point> pPoint = plane.findIntersections(ray);
@@ -47,12 +49,14 @@ public class Triangle extends Polygon {
 	    double s1 = alignZero(n1.dotProduct(v));
     	double s2 = alignZero(n2.dotProduct(v));;
     	double s3 = alignZero(n3.dotProduct(v));
+    	if (s1==0|| s2==0|| s3 ==0) 
+        {
+    		return pPoint;    
+    	}
     	
         if ((s1<0&& s2<0&& s3 <0)||(s1>0&& s2>0&& s3 >0)) 
         {
-        	//for(Point pnt : plane.findIntersections(ray)) {
-        	//	pPoint.add(pnt);
-        	//}        	
+   
     		return pPoint;    
     	}
         return null;

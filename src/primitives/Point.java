@@ -3,6 +3,7 @@ package primitives;
 Numbers as above in the field of type D
  * @author Lea and Moriya */
 public class Point {
+	public static final Point ZERO = null;
 	/**A field of the coordinates of type Double3 */
 	Double3 xyz;
 	/** Constructor to initialize Point based object with its three number values
@@ -15,7 +16,7 @@ public class Point {
 	}
 	/** Constructor to initialize Point based object the same number values
 	 * @param xyzVal point value*/
-	Point(Double3 xyzVal)
+	public Point(Double3 xyzVal)
 	{
 		this.xyz=xyzVal;
 	}

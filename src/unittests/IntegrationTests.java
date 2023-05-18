@@ -1,19 +1,11 @@
 package unittests;
 
-import geometries.Intersectable;
-import geometries.Plane;
-import geometries.Sphere;
-import geometries.Triangle;
+import geometries.*;
 import org.junit.jupiter.api.Test;
-import primitives.Double3;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 import renderer.Camera;
-
 import java.util.LinkedList;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IntegrationTests
@@ -31,7 +23,7 @@ public class IntegrationTests
         camera.setVPDistance(1).setVPSize(3, 3);
 
         // TC01: Two intersection points
-        //assertEquals( 2, calcSumIntersection(camera, sphere, 3, 3),"First test case: should be 2 intersection points");
+        assertEquals( 2, calcSumIntersection(camera, sphere, 3, 3),"First test case: should be 2 intersection points");
 
         // TC02: 18 intersection points
         sphere = new Sphere(new Point(0, 0, -2.5), 2.5);
