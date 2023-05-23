@@ -24,12 +24,14 @@ public class Triangle extends Polygon {
 	 * @param ray of the intersection
 	 * @return the intersection points between the triangle and the ray
 	 */
-	public 	List<Point> findIntersections(Ray ray)
+    protected 	List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
 	{
 		List<Point> pPoint = plane.findIntersections(ray);
 		
 		if(pPoint == null)
 			return null;
+		
+		Point point=pPoint.get(0);
 		
 	    Vector v=ray.getDir();
 	    Point p0=ray.getP0();
@@ -51,13 +53,12 @@ public class Triangle extends Polygon {
     	double s3 = alignZero(n3.dotProduct(v));
     	if (s1==0|| s2==0|| s3 ==0) 
         {
-    		return pPoint;    
+    		return List.of(new GeoPoint(this,point));    
     	}
     	
         if ((s1<0&& s2<0&& s3 <0)||(s1>0&& s2>0&& s3 >0)) 
         {
-   
-    		return pPoint;    
+        	return List.of(new GeoPoint(this,point)); 
     	}
         return null;
 	}

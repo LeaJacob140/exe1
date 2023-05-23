@@ -3,7 +3,7 @@ package primitives;
 Numbers as above in the field of type D
  * @author Lea and Moriya */
 public class Point {
-	public static final Point ZERO = null;
+	public static Point ZERO;
 	/**A field of the coordinates of type Double3 */
 	Double3 xyz;
 	/** Constructor to initialize Point based object with its three number values

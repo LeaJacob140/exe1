@@ -41,13 +41,13 @@ public class Geometries extends Intersectable
 	 * @param ray of the intersection
 	 * @return the intersection points between the shapes collection and the ray
 	 */
-	public 	List<Point> findIntersections(Ray ray)
+	protected  	List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
 	{
 		if(this.lstGeo.isEmpty())
 			return null;
-		List<Point> intersections = new ArrayList<>();
+		List<GeoPoint> intersections = new ArrayList<>();
 	    for (Intersectable geometry : lstGeo) {
-	        List<Point> geometryIntersections = geometry.findIntersections(ray);
+	        List<GeoPoint> geometryIntersections = geometry.findGeoIntersections(ray);
 	        if (geometryIntersections != null)
 	        	{intersections.addAll(geometryIntersections);}
 	        

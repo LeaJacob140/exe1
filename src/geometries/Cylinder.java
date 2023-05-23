@@ -27,7 +27,7 @@ public class Cylinder extends Tube{
 	public double getHeight() {
 	return height;
 	}
-	public 	List<Point> findIntersections(Ray ray)
+	protected 	List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
 	{
 		return null;
 	}

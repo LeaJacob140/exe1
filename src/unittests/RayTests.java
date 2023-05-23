@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import primitives.*;
 
 /**
- * @author Lea Jacob
+ * @author Lea Jacob and Moriya Haddad
  *
  */
 class RayTests {
@@ -24,7 +24,7 @@ class RayTests {
         // TC01: A point in the middle of the list is closest to the beginning of the
         // Ray
         assertEquals( new Point(1.5, 0, 0),
-                ray.findClosesPoint(List.of(new Point(2, 0, 0),
+                ray.findClosestPoint(List.of(new Point(2, 0, 0),
                         new Point(1.5, 0, 0),
                         new Point(2, -1, 0))),
                 "The middle point in the list is closest");
@@ -32,18 +32,18 @@ class RayTests {
         // =============== Boundary Values Tests ==================
 
         // TC02: empty list
-        assertNull( ray.findClosesPoint(List.of()),"empty list: expect to return null");
+        assertNull( ray.findClosestPoint(List.of()),"empty list: expect to return null");
 
         // TC03: The first point is closest to the beginning of the Ray
         assertEquals( new Point(2, 0, 0),
-                ray.findClosesPoint(List.of(new Point(2, 0, 0),
+                ray.findClosestPoint(List.of(new Point(2, 0, 0),
                         new Point(2, 1, 0),
                         new Point(2, -1, 0))),
                 "The first point is closest");
 
         // TC04: The last point is closest to the beginning of the Ray
         assertEquals( new Point(2, 0, 0),
-                ray.findClosesPoint(List.of(new Point(2, -1, 0),
+                ray.findClosestPoint(List.of(new Point(2, -1, 0),
                         new Point(2, 1, 0),
                         new Point(2, 0, 0))),
                 "The last point is closest");

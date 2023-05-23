@@ -1,6 +1,5 @@
 package renderer;
-/** This class present camera and the view plane
- * @author Lea and Moriya */
+
 import primitives.Point;
 import primitives.Ray;
 import primitives.Util;
@@ -10,7 +9,8 @@ import primitives.*;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
-
+/** This class present camera and the view plane
+ * @author Lea and Moriya */
 
 public class Camera {
 	/**The position point of the camera*/
@@ -27,9 +27,9 @@ public class Camera {
 	private double height;
 	/**The center distance between the ray and the view plane*/
 	private double distance;
-	
+	/**field for write an image*/
 	private ImageWriter imageWrite;
-	
+	/**field for trace ray*/
 	private RayTracerBase rayTracBase;
 
 	/**
@@ -111,13 +111,19 @@ public class Camera {
 		this.distance=distance;
 		return this;
 	}
-	
+	/**
+	 * set the image writer field
+	 * @return the object by itself (builder pattern)
+	 */
 	public Camera setImageWriter(ImageWriter imageWrite)
 	{
 		this.imageWrite=imageWrite;
 		return this;
 	}
-	
+	/**
+	 * set the ray tracer field
+	 * @return the object by itself (builder pattern)
+	 */
 	public Camera setRayTracer(RayTracerBase rayTracBase)
 	{
 		this.rayTracBase=rayTracBase;
@@ -152,7 +158,10 @@ public class Camera {
 		Vector vIJ=pIJ.subtract(P0).normalize();
 		return new Ray(this.P0,vIJ);
 	}
-	
+	/**
+	 * The method goes through all the pixels, for each pixel it builds a ray
+	 *  and for each ray it gets a color
+	 */
 	public Camera renderImage() 
 	{
 		try {
@@ -179,10 +188,9 @@ public class Camera {
 		            //Ray ray = constructRay(nX, nY, j, i); 
 
 		            // Use the ray to get the color using the ray tracing algorithm
-		            Color pixelColor = castRay(nX, nY, j, i);
+		            /*Color pixelColor = */castRay(nX, nY, j, i);
 
-		            // Write the color to the corresponding pixel in the image
-		            imageWrite.writePixel(j, i, pixelColor);
+		            
 		        }
 		    }
 		}
@@ -192,23 +200,34 @@ public class Camera {
 		}
 		return this;
 	}
-	
+	/**
+	 * Creates a grid of lines
+	 * @param interval The space between the lines in the grid that will
+	 *  be printed on the image
+	 * @param color of grid
+	 */
 	public void printGrid(int interval,Color color) 
 	{
 		if (imageWrite == null) {
 	        throw new MissingResourceException("ImageWriter is not set", null, null);
 	    }
-		for (int i = 0; i < height; i++) {
-	        for (int j = 0; j < width; j++) {
+		
+		var writer = new ImageWriter("firstImage", 800, 500);
+		for (int i = 0; i < imageWrite.getNx(); i++) {
+	        for (int j = 0; j < imageWrite.getNy(); j++) {
 	            // Check if the current pixel is on the grid line
-	            if (i % interval == 0 || j % interval == 0) {
-	                imageWrite.writePixel(j, i, color);
+	            if (i % interval == 0 || j % interval == 0 || i == 0 || j == 0 || i == 499 || j == 799) {
+	            	imageWrite.writePixel(j, i, color);
 	            }
+	            else
+                    writer.writePixel(j, i, new primitives.Color(0, 0, 255));
 	        }
 	    }
 	}
-	
-	public void writeToImage() //throws MissingResourcesException
+	/**
+	 * Performs delegation for creating the image
+	 */
+	public void writeToImage()
 	{
 		if(imageWrite==null)
 		{
@@ -216,12 +235,22 @@ public class Camera {
 		}
 		imageWrite.writeToImage();
 	}
-	
-	private Color castRay(int nX,int nY,int j,int i)
+	/**
+	 * Generates a beam and calculates the beam's color
+	 * @param nX the resolution 
+	 * @param nY the resolution 
+	 * @param j the place pixel
+	 * @param i the place pixel
+	 */
+	private void castRay(int nX,int nY,int j,int i)
 	{
+		//create the ray
 		 Ray r=constructRay(nX, nY, j, i);
+		 //calculate the color of the ray
 		 Color c=rayTracBase.traceRay(r);
-		 return c;
+		// Write the color to the corresponding pixel in the image
+         imageWrite.writePixel(j, i, c);
+		 //return c;
 	}
 	
 	

@@ -58,7 +58,7 @@ public class Plane extends Geometry {
 	 * @param ray of the intersection
 	 * @return the intersection points between the plane and the ray
 	 */
-	public List<Point> findIntersections(Ray ray)
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
 	{
 		if(q0.equals(ray.getP0()))
 			return null;
@@ -73,6 +73,6 @@ public class Plane extends Geometry {
 		{
 			return null;
 		}
-		return List.of(ray.getPoint(t));
+		return List.of(new GeoPoint(this,ray.getPoint(t)));
 	}
 }

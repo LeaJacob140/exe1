@@ -41,7 +41,7 @@ public class Tube extends RadialGeometry {
 		Point O=axisRay.getP0().add(axisRay.getDir().scale(t));
 		return (norPoint.subtract(O)).normalize();
 	}
-	public 	List<Point> findIntersections(Ray ray)
+	protected 	List<GeoPoint> findGeoIntersectionsHeplper(Ray ray)
 	{
 		return null;
 	}
