@@ -53,7 +53,7 @@ public class Triangle extends Polygon {
     	double s3 = alignZero(n3.dotProduct(v));
     	if (s1==0|| s2==0|| s3 ==0) 
         {
-    		return List.of(new GeoPoint(this,point));    
+    		return null;    
     	}
     	
         if ((s1<0&& s2<0&& s3 <0)||(s1>0&& s2>0&& s3 >0)) 

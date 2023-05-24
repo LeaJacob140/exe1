@@ -37,20 +37,28 @@ public abstract class Intersectable {
 		return findGeoIntersectionsHelper(ray);
 	}
 	
-	protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
-	{
-//		List<GeoPoint> intersections = new ArrayList<>();
-//		for (Geometries geometry : //) {
-//	        List<Point> geometryIntersections = geometry.findIntersections(ray);
+//	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+//	    List<Intersectable.GeoPoint> intersections = new ArrayList<>();
+//	    for (Intersectable geometry : Scene.geometries) {
+//	        List<GeoPoint> geometryIntersections = geometry.findGeoIntersections(ray);
 //	        if (geometryIntersections != null) {
-//	            for (Point intersection : geometryIntersections) {
-//	                intersections.add(new GeoPoint(this, intersection));
-//	            }
+//	            intersections.addAll(geometryIntersections);
 //	        }
 //	    }
-//
+//	    if (intersections.isEmpty()) {
+//	        return null;
+//	    }
 //	    return intersections;
-		return null;
+//	}
+	protected List<Intersectable.GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+	    List<Intersectable.GeoPoint> intersections = new ArrayList<>();
+	    Intersectable[] geometriesArray = ((List<Point>) Scene.geometries).toArray(new Intersectable[0]);
+	    for (Intersectable geometry : geometriesArray) {
+	        List<Intersectable.GeoPoint> geometryIntersections = geometry.findGeoIntersections(ray);
+	        if (geometryIntersections != null) {
+	            intersections.addAll(geometryIntersections);
+	        }
+	    }
+	    return intersections.isEmpty() ? null : intersections;
 	}
-	
 }

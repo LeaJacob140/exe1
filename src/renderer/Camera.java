@@ -185,12 +185,7 @@ public class Camera {
 		    {
 		        for (int j = 0; j < nX; j++) 
 		        {
-		            //Ray ray = constructRay(nX, nY, j, i); 
-
-		            // Use the ray to get the color using the ray tracing algorithm
-		            /*Color pixelColor = */castRay(nX, nY, j, i);
-
-		            
+		        	castRay(nX, nY, j, i);  
 		        }
 		    }
 		}
@@ -212,11 +207,11 @@ public class Camera {
 	        throw new MissingResourceException("ImageWriter is not set", null, null);
 	    }
 		
-		var writer = new ImageWriter("firstImage", 800, 500);
+		var writer = new ImageWriter("firstImage",imageWrite.getNx(), imageWrite.getNy());
 		for (int i = 0; i < imageWrite.getNx(); i++) {
-	        for (int j = 0; j < imageWrite.getNy(); j++) {
+	        for (int j = 0; j <imageWrite.getNy(); j++) {
 	            // Check if the current pixel is on the grid line
-	            if (i % interval == 0 || j % interval == 0 || i == 0 || j == 0 || i == 499 || j == 799) {
+	            if (i % interval == 0 || j % interval == 0 || i == 0 || j == 0 || i == imageWrite.getNx()-1 || j == imageWrite.getNy()-1) {
 	            	imageWrite.writePixel(j, i, color);
 	            }
 	            else

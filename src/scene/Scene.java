@@ -13,7 +13,7 @@ public class Scene {
 	/**ambient lighting*/
 	public AmbientLight ambientLight=AmbientLight.NONE;
 	/**The 3D model*/
-	public Geometries geometries=new Geometries();
+	public static Geometries geometries=new Geometries();
 	/**
 	 * Constructor for initializing the name of the scene.
 	 * @param name the name of the scene
