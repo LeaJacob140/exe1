@@ -8,6 +8,7 @@ called the head of the fund. Defined by point and direction
  * @author Lea and Moriya
  */
 public class Ray {
+	private static final double DELTA = 0.1;
 	/**Point field to represent a beam*/
 	final Point p0;
 	/**A vector field to represent a ray*/
@@ -19,6 +20,12 @@ public class Ray {
 	 */
 	public Ray(Point p0, Vector dir) {
 		this.p0 = p0;
+		this.dir = dir.normalize();
+	}
+	public Ray(Point p0, Vector dir,Vector n) {
+		
+		Vector epsVector = n.scale(n.dotProduct(dir)>0? DELTA:-DELTA);
+		this.p0 = p0.add(epsVector);
 		this.dir = dir.normalize();
 	}
 	/**

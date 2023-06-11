@@ -49,23 +49,20 @@ public class Sphere extends RadialGeometry  {
 		double d=Math.sqrt(((center.subtract(ray.getP0())).lengthSquared())-tm*tm);
 		if(d>=radius)
 			return null;
-		double th= Math.sqrt(radius*radius-d*d);
+		double th= alignZero(Math.sqrt(radius*radius-d*d));
 		double t1=alignZero(tm+th);
 		double t2=alignZero(tm-th);
 		if(t1>0&&t2>0)//if there are two points
 		{
 			return List.of(new GeoPoint(this,ray.getPoint(t1)),new GeoPoint(this,ray.getPoint(t2)));
-			//return List.of(ray.getPoint(t1),ray.getPoint(t2));
 		}
 		else if(t1>0)//if there is one point
 		{
 			return List.of(new GeoPoint(this,ray.getPoint(t1)));
-			//return List.of(ray.getPoint(t1));
 		}
 		else if(t2>0)//if there is one point
 		{
 			return List.of(new GeoPoint(this,ray.getPoint(t2)));
-			//return List.of(ray.getPoint(t2));
 		}
 		return null;
 	}

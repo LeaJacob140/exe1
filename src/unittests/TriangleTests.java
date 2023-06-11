@@ -67,5 +67,4 @@ class TriangleTests {
 	    ray = new Ray(new Point(0, 0, -1), new Vector(0, 1, 1));
 	    assertNull(triangle.findIntersections(ray), "TC06: Wrong intersection");
 	}
-
 }

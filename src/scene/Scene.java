@@ -1,7 +1,10 @@
 package scene;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import geometries.Geometries;
-import lighting.AmbientLight;
+import lighting.*;
 import primitives.Color;
 /** This class present scene
  * @author Lea and Moriya */
@@ -13,7 +16,9 @@ public class Scene {
 	/**ambient lighting*/
 	public AmbientLight ambientLight=AmbientLight.NONE;
 	/**The 3D model*/
-	public static Geometries geometries=new Geometries();
+	public Geometries geometries=new Geometries();
+	
+	public List<LightSource> lights=new LinkedList<>();
 	/**
 	 * Constructor for initializing the name of the scene.
 	 * @param name the name of the scene
@@ -42,8 +47,18 @@ public class Scene {
 	 * set the geometries
 	 * @return the object by itself (builder pattern)
 	 */
+	@SuppressWarnings("static-access")
 	public Scene setGeometries(Geometries geometries) {
 		this.geometries = geometries;
+		return this;
+	}
+	public Scene setLights(List<LightSource> lights) {
+		this.lights = lights;
+		return this;
+	}
+	public Scene addLight(LightSource light)
+	{
+		lights.add(light);
 		return this;
 	}
 	

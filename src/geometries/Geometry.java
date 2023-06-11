@@ -1,9 +1,7 @@
 package geometries;
 
+import primitives.*;
 
-import primitives.Color;
-import primitives.Point;
-import primitives.Vector;
 /**
  * This is an interface for some geometric body
  * @author Lea and Moriya
@@ -11,6 +9,11 @@ import primitives.Vector;
 public abstract class Geometry extends Intersectable{
 	
 	protected Color emission=Color.BLACK;
+	private Material material=new Material();
+	
+	public Material getMaterial() {
+		return material;
+	}
 
 /**
  * 
@@ -25,6 +28,11 @@ public abstract class Geometry extends Intersectable{
 
 	public Geometry setEmission(Color emission) {
 		this.emission = emission;
+		return this;
+	}
+	
+	public Geometry setMaterial(Material material) {
+		this.material =material;
 		return this;
 	}
 }

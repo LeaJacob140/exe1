@@ -37,22 +37,11 @@ public abstract class Intersectable {
 		return findGeoIntersectionsHelper(ray);
 	}
 	
-//	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-//	    List<Intersectable.GeoPoint> intersections = new ArrayList<>();
-//	    for (Intersectable geometry : Scene.geometries) {
-//	        List<GeoPoint> geometryIntersections = geometry.findGeoIntersections(ray);
-//	        if (geometryIntersections != null) {
-//	            intersections.addAll(geometryIntersections);
-//	        }
-//	    }
-//	    if (intersections.isEmpty()) {
-//	        return null;
-//	    }
-//	    return intersections;
-//	}
 	protected List<Intersectable.GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		Scene mySce = null;
 	    List<Intersectable.GeoPoint> intersections = new ArrayList<>();
-	    Intersectable[] geometriesArray = ((List<Point>) Scene.geometries).toArray(new Intersectable[0]);
+	    @SuppressWarnings("null")
+		Intersectable[] geometriesArray = ((List<Point>) mySce.geometries).toArray(new Intersectable[0]);
 	    for (Intersectable geometry : geometriesArray) {
 	        List<Intersectable.GeoPoint> geometryIntersections = geometry.findGeoIntersections(ray);
 	        if (geometryIntersections != null) {
