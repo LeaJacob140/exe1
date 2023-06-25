@@ -1,6 +1,9 @@
 package renderer;
 
+import java.util.List;
+
 import primitives.Color;
+import primitives.Point;
 import primitives.Ray;
 import scene.Scene;
 /** This class is abstract and present the ray trace base
@@ -21,6 +24,4 @@ public abstract class RayTracerBase {
 	 * @return the color of the ray in the scene
 	 */
 	public abstract Color traceRay(Ray ray);
-	
-	
 }

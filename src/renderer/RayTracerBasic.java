@@ -14,14 +14,12 @@ public class RayTracerBasic extends RayTracerBase{
 	private static final double MIN_CALC_COLOR_K = 0.001;
 	private static final Double3 INITIAL_K =new Double3( 1.0);
 	private static final int MAX_CALC_COLOR_LEVEL = 10;
-
 	/**
 	 * Constructor to initialize the scene
 	 * @param scen for initialize the scene
 	 */
-	public RayTracerBasic(Scene scen) {
+    public RayTracerBasic(Scene scen) {
 		super(scen);
-		
 	}
 	/**
 	 * Looking for cuts between the ray and the 3D model
@@ -86,21 +84,21 @@ public class RayTracerBasic extends RayTracerBase{
 	private Vector calcRDirection(Vector n, Vector l,double nl) {
 	    return l.subtract(n.scale(nl*2));
 	}
-    private boolean unshaded(GeoPoint geoPoint, Vector l, Vector n, LightSource lightSource) {
-        Ray lightRay = new Ray(geoPoint.point, l.scale(-1), n);
-        List<GeoPoint> intersections = scen.geometries.findGeoIntersections(lightRay);
-
-        if (intersections != null) {
-            double distance = lightSource.getDistance(geoPoint.point);
-            for (GeoPoint intersection : intersections) {
-                if (intersection.point.distance(geoPoint.point) < distance) {
-                    return false;
-                }
-            }
-        }
-        return true;
-
-    }
+//    private boolean unshaded(GeoPoint geoPoint, Vector l, Vector n, LightSource lightSource) {
+//        Ray lightRay = new Ray(geoPoint.point, l.scale(-1), n);
+//        List<GeoPoint> intersections = scen.geometries.findGeoIntersections(lightRay);
+//
+//        if (intersections != null) {
+//            double distance = lightSource.getDistance(geoPoint.point);
+//            for (GeoPoint intersection : intersections) {
+//                if (intersection.point.distance(geoPoint.point) < distance) {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//
+//    }
     private Double3 transparency(GeoPoint gp, Vector l, Vector n, LightSource ls) {
     	 Vector lightDirection = l.scale(-1); // from point to light source
          Ray lightRay = new Ray(gp.point, lightDirection, n);
