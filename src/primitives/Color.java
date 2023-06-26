@@ -104,5 +104,13 @@ public class Color {
 
    @Override
    public String toString() { return "rgb:" + rgb; }
+   public double getDistance(Color other) {
+	    double redDifference = this.rgb.d1 - other.rgb.d1;
+	    double greenDifference = this.rgb.d2 - other.rgb.d2;
+	    double blueDifference = this.rgb.d3 - other.rgb.d3;
+
+	    return Math.sqrt(redDifference * redDifference + greenDifference * greenDifference + blueDifference * blueDifference);
+	}
+
 
 }

@@ -1,6 +1,2 @@
-/geometries/
-/renderer/
-/scene/
 /unittests/
-/lighting/
-/primitives/
+/renderer/
