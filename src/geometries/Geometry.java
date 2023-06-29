@@ -21,16 +21,27 @@ public abstract class Geometry extends Intersectable{
  * @return the normal vector (perpendicular) to the body at this point.
  */
 	public abstract Vector getNormal(Point norPoint);
-	
+	/**
+	 * 
+	 * @return the emission of the geometry.
+	 */
 	public Color getEmission() {
 		return emission;
 	}
-
+	/**
+	 * set the emmision
+	 * @param Color emission
+	 * @return objet- builder pattern
+	 */
 	public Geometry setEmission(Color emission) {
 		this.emission = emission;
 		return this;
 	}
-	
+	/**
+	 * set the material
+	 * @param Matirial material
+	 * @return object- builder pattern
+	 */
 	public Geometry setMaterial(Material material) {
 		this.material =material;
 		return this;
